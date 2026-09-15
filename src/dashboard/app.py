@@ -188,8 +188,8 @@ with tabs[0]:
         fig_trend.update_layout(
             title="Daily Gross Merchandise Value vs. Fraud Exposure",
             xaxis_title="Date",
-            yaxis=dict(title="GMV ($)", titlefont=dict(color="#1E88E5")),
-            yaxis2=dict(title="Fraud Exposure ($)", titlefont=dict(color="#E53935"), overlaying="y", side="right"),
+            yaxis=dict(title=dict(text="Daily GMV ($)", font=dict(color="#1E88E5"))),
+            yaxis2=dict(title=dict(text="Fraud Exposure ($)", font=dict(color="#E53935")), overlaying="y", side="right"),
             template="plotly_dark",
             legend=dict(x=0.01, y=0.99)
         )
