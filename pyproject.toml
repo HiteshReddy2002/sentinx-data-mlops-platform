@@ -1,0 +1,22 @@
+[project]
+name = "sentinx-platform"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "duckdb>=1.5.5",
+    "faker>=40.39.0",
+    "fastapi>=0.141.1",
+    "httpx>=0.28.1",
+    "lightgbm>=4.7.0",
+    "mlflow>=3.16.0",
+    "numpy>=2.5.3",
+    "pandas>=3.0.5",
+    "plotly>=7.1.0",
+    "pydantic>=2.13.5",
+    "pytest>=9.1.1",
+    "scikit-learn>=1.9.1",
+    "streamlit>=1.64.0",
+    "uvicorn>=0.53.0",
+]

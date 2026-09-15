@@ -1,0 +1,56 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: "Raw ingested transactions, users, and merchants"
+    tables:
+      - name: raw_transactions
+        description: "Raw streaming transactions landing table"
+        columns:
+          - name: transaction_id
+            tests:
+              - unique
+              - not_null
+      - name: raw_users
+        description: "User dimension master data"
+      - name: raw_merchants
+        description: "Merchant partner master data"
+
+models:
+  - name: fct_transactions
+    description: "Enriched transactional fact table partitioned by date"
+    columns:
+      - name: transaction_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "Foreign key to dim_users"
+        tests:
+          - not_null
+      - name: amount
+        description: "Transaction amount in USD"
+        tests:
+          - not_null
+      - name: channel
+        description: "Origination channel"
+        tests:
+          - accepted_values:
+              values: ['mobile_app', 'web', 'in_store', 'api']
+      - name: is_fraud
+        description: "Ground truth fraud label"
+        tests:
+          - accepted_values:
+              values: [0, 1]
+
+  - name: dim_users
+    description: "Customer dimension with lifetime aggregate metrics and tenure cohort"
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: email
+        tests:
+          - not_null

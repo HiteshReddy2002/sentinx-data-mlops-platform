@@ -1,0 +1,33 @@
+{
+  "run_id": "bb763cecc13142d89b24ea772cd3e211",
+  "metrics": {
+    "roc_auc": 1.0,
+    "pr_auc": 0.9997,
+    "f1_score": 0.9801,
+    "precision": 0.9867,
+    "recall": 0.9737,
+    "true_positives": 74,
+    "false_positives": 1,
+    "true_negatives": 1923,
+    "false_negatives": 2
+  },
+  "params": {
+    "n_estimators": 120,
+    "learning_rate": 0.05,
+    "max_depth": 6,
+    "num_leaves": 31,
+    "scale_pos_weight": 18.99,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "top_features": [
+    "amount",
+    "amount_to_baseline_ratio",
+    "distance_from_home_km",
+    "baseline_spend",
+    "device_type_macos"
+  ],
+  "model_path": "C:\\Users\\hites\\.gemini\\antigravity-ide\\scratch\\sentinx-data-mlops-platform\\models\\sentinx_fraud_detector.joblib"
+}

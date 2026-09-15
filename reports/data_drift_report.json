@@ -1,0 +1,19 @@
+{
+  "overall_status": "DRIFT_ALERT",
+  "reference_sample_size": 200,
+  "current_sample_size": 200,
+  "drifting_features_count": 1,
+  "drifting_features": [
+    "amount"
+  ],
+  "feature_metrics": {
+    "amount": {
+      "ks_statistic": 0.435,
+      "p_value": 0.0,
+      "psi_score": 2.3867,
+      "wasserstein_distance": 2366.9156,
+      "drift_detected": true,
+      "severity": "HIGH"
+    }
+  }
+}
