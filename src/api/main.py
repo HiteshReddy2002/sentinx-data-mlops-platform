@@ -36,33 +36,35 @@ STATE = {
 }
 
 
+def _load_state():
+    """Loads pre-trained model bundle and feature store cache if not already loaded."""
+    if STATE["model_bundle"] is None:
+        model_path = MODELS_DIR / "sentinx_fraud_detector.joblib"
+        if model_path.exists():
+            STATE["model_bundle"] = joblib.load(model_path)
+
+    if STATE["feature_pipeline"] is None:
+        pipeline_path = MODELS_DIR / "feature_pipeline.joblib"
+        if pipeline_path.exists():
+            STATE["feature_pipeline"] = FeaturePipeline.load(pipeline_path)
+
+    if not STATE["users_cache"]:
+        users_parquet = GOLD_DIR / "gold_dim_users.parquet"
+        if users_parquet.exists():
+            df_u = pd.read_parquet(users_parquet)
+            STATE["users_cache"] = df_u.set_index("user_id").to_dict("index")
+
+    if not STATE["merchants_cache"]:
+        merchants_parquet = GOLD_DIR / "gold_dim_merchants.parquet"
+        if merchants_parquet.exists():
+            df_m = pd.read_parquet(merchants_parquet)
+            STATE["merchants_cache"] = df_m.set_index("merchant_id").to_dict("index")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Loads pre-trained model bundle and feature store cache on startup."""
-    # 1. Load Model Bundle
-    model_path = MODELS_DIR / "sentinx_fraud_detector.joblib"
-    if not model_path.exists():
-        raise RuntimeError("Model artifact not found. Please train model using 'python -m src.ml.train' first.")
-    STATE["model_bundle"] = joblib.load(model_path)
-
-    # 2. Load Feature Pipeline
-    pipeline_path = MODELS_DIR / "feature_pipeline.joblib"
-    if not pipeline_path.exists():
-        raise RuntimeError("Feature pipeline artifact not found.")
-    STATE["feature_pipeline"] = FeaturePipeline.load(pipeline_path)
-
-    # 3. Load Fast In-Memory Feature Store (Users & Merchants)
-    users_parquet = GOLD_DIR / "gold_dim_users.parquet"
-    merchants_parquet = GOLD_DIR / "gold_dim_merchants.parquet"
-
-    if users_parquet.exists():
-        df_u = pd.read_parquet(users_parquet)
-        STATE["users_cache"] = df_u.set_index("user_id").to_dict("index")
-
-    if merchants_parquet.exists():
-        df_m = pd.read_parquet(merchants_parquet)
-        STATE["merchants_cache"] = df_m.set_index("merchant_id").to_dict("index")
-
+    _load_state()
     yield
     # No-op on shutdown to preserve state during test contexts
 
@@ -85,6 +87,7 @@ app.add_middleware(
 
 def _score_transaction(tx: TransactionPayload) -> PredictionResponse:
     """Performs feature enrichment and scoring for a single transaction."""
+    _load_state()
     t0 = time.time()
     user_meta = STATE["users_cache"].get(
         tx.user_id,

@@ -1,0 +1,36 @@
+{
+  "run_id": "run_20260915_183635",
+  "started_at": "2026-09-15T18:36:35.822595",
+  "stages": {
+    "bronze_ingestion": {
+      "duration_seconds": 0.386,
+      "records_ingested": 15000,
+      "fraud_records": 570,
+      "status": "COMPLETED"
+    },
+    "quality_gates": {
+      "duration_seconds": 0.007,
+      "checks_run": 7,
+      "passed": true,
+      "status": "PASSED"
+    },
+    "silver_transformation": {
+      "duration_seconds": 0.093,
+      "silver_tx_count": 15000,
+      "status": "COMPLETED"
+    },
+    "gold_warehouse": {
+      "duration_seconds": 0.186,
+      "mart_counts": {
+        "dim_users": 600,
+        "dim_merchants": 80,
+        "fct_transactions": 15000,
+        "fct_fraud_incidents": 570
+      },
+      "status": "COMPLETED"
+    }
+  },
+  "completed_at": "2026-09-15T18:36:36.494964",
+  "total_duration_seconds": 0.672,
+  "status": "SUCCESS"
+}
