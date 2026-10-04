@@ -7,6 +7,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-Sub--20ms_Serving-009688.svg)](https://fastapi.tiangolo.com)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Executive_Dashboard-FF4B4B.svg)](https://streamlit.io)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-green.svg)](https://github.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **SentinX** is a unified, production-grade **Data Engineering, Data Analytics, and MLOps Platform** simulating an enterprise financial transaction network. It delivers end-to-end streaming/batch ingestion, Medallion star schema warehousing, automated data contract validation, machine learning fraud detection, model registry tracking with MLflow, sub-20ms low-latency inference serving via FastAPI, covariate drift monitoring with statistical hypothesis testing, and an interactive executive BI command center with What-If scenario simulation.
 
@@ -60,8 +61,8 @@ flowchart TD
 
 ### 1. Clone & Set Up Virtual Environment
 ```bash
-git clone https://github.com/your-username/sentinx-platform.git
-cd sentinx-platform
+git clone https://github.com/HiteshReddy2002/sentinx-data-mlops-platform.git
+cd sentinx-data-mlops-platform
 
 # Install dependencies using uv (blazing fast)
 uv sync
@@ -153,4 +154,38 @@ While SentinX runs locally out-of-the-box for portability and zero-cost local ev
 
 For detailed talking points, 60-second elevator pitches, STAR-format situational stories, system design trade-offs, and 20+ interview questions and answers tailored to **Data Engineer**, **Data Analyst**, and **MLOps** interviews, see:
 
-👉 **[`INTERVIEW_PLAYBOOK.md`](file:///INTERVIEW_PLAYBOOK.md)**
+👉 **[`INTERVIEW_PLAYBOOK.md`](INTERVIEW_PLAYBOOK.md)**
+
+---
+
+## 🛣️ Roadmap
+
+- [ ] Real-time Kafka / Pub-Sub streaming ingestion layer
+- [ ] Great Expectations integration for declarative data contracts
+- [ ] Vertex AI Feature Store migration blueprint (runnable)
+- [ ] Model monitoring alerting via PagerDuty webhook
+- [ ] dbt semantic layer with MetricFlow
+- [ ] Multi-tenant support with row-level security in DuckDB
+- [ ] Grafana + Prometheus observability stack
+
+---
+
+## 📝 Citation
+
+If you use SentinX in academic or professional work, please cite:
+
+```bibtex
+@software{tippasani2026sentinx,
+  author    = {Tippasani, Hitesh Reddy},
+  title     = {SentinX: A Production-Grade FinTech Data and MLOps Platform with Medallion Architecture, LightGBM Fraud Detection, and Sub-20ms FastAPI Serving},
+  year      = {2026},
+  url       = {https://github.com/HiteshReddy2002/sentinx-data-mlops-platform},
+  note      = {GitHub repository}
+}
+```
+
+---
+
+## 📄 License
+
+Distributed under the [MIT License](LICENSE). Copyright (c) 2026 Hitesh Reddy Tippasani.
