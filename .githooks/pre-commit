@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Pre-commit hook: Run gitleaks to prevent committing credentials
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks protect --staged --verbose
+  if [ $? -ne 0 ]; then
+    echo "❌ [SECURITY ALERT] Gitleaks detected potential secrets staged for commit!"
+    echo "Please remove the credential from your changes or add to .gitleaksignore if false positive."
+    exit 1
+  fi
+fi

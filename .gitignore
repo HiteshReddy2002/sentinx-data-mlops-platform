@@ -53,3 +53,14 @@ mlruns/
 # OS files
 .DS_Store
 Thumbs.db
+
+# ── Security & Credentials (NEVER commit secrets) ───────────────────────────
+.env
+*.env
+.env.*
+!*.example
+*_service_account*.json
+credentials*.json
+*.pem
+*.key
+secrets/
